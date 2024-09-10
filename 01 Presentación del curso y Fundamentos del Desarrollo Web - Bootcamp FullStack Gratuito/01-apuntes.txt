@@ -1,0 +1,60 @@
+Fundamentos de las aplicaciones web
+    herramientas de desarrollador
+        requests
+            recursos que carga la página para poder funcionar
+            response headers
+                cabecera de respuesta
+                    el servidor contesta algo 
+            request headers
+                cabeceras de petición
+                    las cabeceras de la petición que yo le hago al servidor
+        response
+            contiene el HTML
+        disable cache
+            permite desactivar la caché, para que se cacheen los recursos de una web y se re-aprovechen
+            en el tamaño del recurso aparece memory, lo que indica que se ha servido el recurso desde la caché
+        petición asíncrona AJAX
+            pide información al servidor, y cuando la recibe, la pinta
+        mayúscula comando p en chrome
+            y desactivas javascript y recargas la web
+        DOM - Document Object Model / Árbol de elementos
+            se puede manipular con código y de forma dinámica
+            voy a console en el navegador
+                consulto el DOM con document.métodoConsultaDom
+                    document.querySelectorAll(‘a.home-article’)
+                    document.querySelector(‘a.home-article’)
+                sobreescribo el código HTML
+                    document.querySelector(‘a.home-article’).innerHTML = ‘<strong>Voy a cambiarlo por esto</strong>’
+                cambio el texto de un elemento
+                    document.querySelector(‘a.home-article strong’).textContent = ‘esto es otro texto’
+        peticiones de recursos
+            proceso
+                cliente hace petición al servidor de una url
+                    servidor devuelve html
+                cliente pide fichero.css
+                    servidor devuelve el css
+                cliente pide fichero.js
+                    servidor devuelve js
+                navegador ejecuta js con event handler para renderizar las notas en json
+                    navegador pide el json al servidor
+                    servidor devuelve json
+                navegador pinta las notas
+            orden
+                se hace la primera petición (tipo document)
+                devuelve el html
+                cuando recibe el html verifica que necesita el .css y el .js → estas dos peticiones se hacen en paralelo
+                    se descargan en paralelo
+                    el css SIEMPRE se ejecuta antes que el .js
+                        excepción
+                            cargar el .css mediante .js: .css se ejecutará después del .js que lo ha cargado, obvio!
+                cuando carga y ejecuta el .js verifica que necesita el .json
+                el favicon se carga más tarde por optimización del rendimiento
+        link rel=”preload”
+            indica el orden de carga
+        todos los status codes
+            https://httpstatuses.io/
+Teoría del bootcamp
+    herramientas de desarrollador
+        siempre mantener la consola abierta
+            escribiendo clear() se limpia la consola
+        ir a network, y deshabilitar la caché

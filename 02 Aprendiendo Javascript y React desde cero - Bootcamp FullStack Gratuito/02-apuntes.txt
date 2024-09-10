@@ -1,0 +1,75 @@
+JavaScript
+    type = “module”
+        <script type="module" src="script.js"></script>
+            permite cargar módulos ecmascript
+            requiere levantar un servidor
+        <script src="script.js"></script>
+            para cargar un .js de forma básica
+    diferencia entre let y var
+        let tiene su propio scope, como he visto siempre
+            me permite, en caso necesario, tener dos variables que se llamen igual, dentro y fuera del scope, totalmente independientes, y por lo tanto, con valores distintos
+        var tiene un scope global, accesible desde cualquier parte del programa
+    significado de const
+        significa que no se puede reasignar, pero sí que se puede variar
+        ejemplo
+            cost list = []
+            list.push(‘Hello’) → Añade la palabra ‘Hello’ a la lista
+    tipos mutables vs inmutables
+        los primitivos son inmutables
+            si aplico toUppercase, u otros métodos, NO MUTAN la variable
+                puedo hacer un print de la variable con uppercase, pero no puedo mutarla con uppercase
+        objetos: no son primitivos y son mutables
+            son arrays, sets, maps… y otros objetos
+            list.push(‘whatever’)
+                el valor de list ha cambiado, es mutable
+            en el caso de usar concat en lugar de push, concat devuelve un nuevo array obligatoriamente
+    uso de corchetes
+        persona[field] = persona.youtube 
+        cuando:
+            const persona = { youtube: ‘whatever' }
+        y:
+            const field = 'youtube'
+    function expression
+        cuando a una constante le asigno una función
+    comparaciones
+        2 == “2” true
+        2 === “2” false
+React
+JSX
+    React usa JSX
+        en JSX todas las etiquetas se tienen que cerrar, incluyendo las de imagen, o un <br/>
+    componentes
+        Al nombrar un componente, siempre la primera letra en mayúscula, esto se hace para diferenciar una etiqueta html de un componente de React que se va a renderizar
+        Los componentes deben de estar separados, no unos dentro de otros, porque darían problemas de rendimiento y eso es una mala práctica
+    props
+        a los componentes se le pueden pasar parámetros, estos parámetros se llaman props
+    return
+        devolver siempre un elemento
+            <div>
+                <Mensaje… />
+                <Mensaje… />
+            </div>
+        El elemento puede ser un elemento html, un string o null (no devuelve nada)
+        devolver mas de un elemento, incorrecto
+            <Mensaje… />
+            <Mensaje… />
+    desestructuración
+        es extraer una propiedad de un objeto directamente
+            donde yo haría
+                const course = props.course
+            puedo hacer
+                const {course} = props
+            ambas formas hacen lo mismo, pero una es más corta
+    one liner
+        es una forma todavía más corta, que solo sirve para aquellos casos en los que se devuelve una única línea
+            const Title = ({course}) => <h1>{course}</h1>
+    fragments
+        cuando renderizo un componente, debe estar incluido en un solo elemento:
+            <div>
+                <p>Hello {props.name},  you are {props.age} years old</p>
+            <div/>
+        puedo usar fragments para evitar la divitis
+            los fragments, se renderizarán como elementos <p>
+                <>
+                    <p>Hello {props.name},  you are {props.age} years old</p>
+                </>
