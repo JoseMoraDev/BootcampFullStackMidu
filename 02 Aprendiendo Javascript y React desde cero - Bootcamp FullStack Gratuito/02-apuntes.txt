@@ -12,7 +12,7 @@ JavaScript
     significado de const
         significa que no se puede reasignar, pero sí que se puede variar
         ejemplo
-            cost list = []
+            const list = []
             list.push(‘Hello’) → Añade la palabra ‘Hello’ a la lista
     tipos mutables vs inmutables
         los primitivos son inmutables
