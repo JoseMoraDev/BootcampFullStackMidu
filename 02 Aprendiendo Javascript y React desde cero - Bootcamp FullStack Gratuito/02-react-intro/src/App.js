@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Mensaje from './mensaje.js';
 
-function App() {
+  // los componentes se declaran con la primera letra en mayúscula, de lo contrario serán considerados como etiquetas html estándar
+
+  // este código es JSX que se parseará con Babel a JavaScript
+    // todas las etiquetas JSX se tienen que cerrar
+
+  // renderiza el componente 'App' en el elemento cuyo id es 'root'
+const App = () => {
+  const mensaje = 'Hola '
+  const a = 2
+  const b = 3
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Mensaje color='green' message='Segundo vídeo' />
+      <Mensaje color='blue' message='del curso' />
+      <Mensaje color='orange' message='de React' />
+        {mensaje + 'evaluación en JSX'} {/* contenido entre llaves evalua JS */}
+        <br />
+        {(a + b)}
+        <br />
+            {/* no se puede renderizar directamente un objeto:
+                {new Date()} no funcionará */}
+            {/* si que funcionará si se transforma en un TimeStamp */}
+                {+new Date()}
+
     </div>
   );
 }

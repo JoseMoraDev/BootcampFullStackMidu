@@ -34,10 +34,38 @@ JavaScript
     comparaciones
         2 == “2” true
         2 === “2” false
+    ámbito de VAR
+        si se declara fuera de una función, está disponible en todo el scope
+        si de declara dentro de una función, está disponible solo dentro de esa función
+    las variables declaradas con var, se pueden: 
+        tanto redeclarar como reasignar su valo
+    problema
+        se puede reasignar la variable 'involuntariamente':
+            var saludar = "hey, hola";
+            var tiempos = 4;
+
+            if (tiempos > 3) {
+                var saludar = "dice Hola tambien"; 
+            }
+            
+            console.log(saludar) // "dice Hola tambien"
+    
+    objeto literal
+        contiene >= 1 par clave-valor
+
 React
-JSX
-    React usa JSX
-        en JSX todas las etiquetas se tienen que cerrar, incluyendo las de imagen, o un <br/>
+    estructura básica de un proyecto de React
+        public
+            contiene los recursos estáticos de la web
+        source
+            código fuente
+    npm
+        para instalar paquetes
+    npx
+        para descargar en una carpeta temporal y ejecutar los paquetes sin instalarlos
+    JSX
+        React usa JSX
+            en JSX todas las etiquetas se tienen que cerrar, incluyendo las de imagen, o un <br/>
     componentes
         Al nombrar un componente, siempre la primera letra en mayúscula, esto se hace para diferenciar una etiqueta html de un componente de React que se va a renderizar
         Los componentes deben de estar separados, no unos dentro de otros, porque darían problemas de rendimiento y eso es una mala práctica
