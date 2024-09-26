@@ -1,0 +1,43 @@
+Es muy habitual definir unas funciones dentro de otras en JavaScript
+
+Convenciones de nomenclatura
+    onSomething -> cuando ocurre un evento
+    handleSomething --> maneja un evento
+
+Llamar a una función que cambia el estado hace que el componente se vuelva a renderizar
+
+Depuración
+    No usar 
+        console.log('props value is ' + props)
+        devolverá props value is [Object object]
+    Usar
+        console.log('props value is', props)
+
+Cuando se renderiza el componente se vuelve a ejecutar toda la función return de la app
+    En el DOM solo se actualizan los cambios, el resto no se re-renderiza
+    ¿Cuándo se re-renderiza?
+        cuando cambia su estado o cuando recibe una nueva prop
+
+No se pueden incluir condicionales en los hooks
+
+spread operator
+    con él indico que quiero recuperar todas las propiedades de un objeto, para guardarlas en otro objeto
+        uso:
+            ...objeto,
+            propiedad: nuevo_valor,
+            etc
+    
+nunca mutar el objeto del estado
+    nunca: 
+        objeto.propiedad++
+    tendrá consuencias inesperadas y los cambios no se mostrarán en la UI
+    al mutarlo erróneamente React no sabe:
+        cuándo y cómo tiene que cambiar el estado
+
+cuando evalúo un array y react lo renderiza, lo transforma a string
+    para mejorar la presentación ha usado
+        {array.join(", ")}
+
+no definir componentes dentro de otro componente, es mala práctica
+
+

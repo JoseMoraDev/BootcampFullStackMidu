@@ -1,77 +1,85 @@
-import ReactDom from "react-dom"
-import { useState } from "react";
-const INITIAL_STATE = {
-  left: 0,
-  right: 0,
-  mensaje: 'Sin spread operator este mensaje se borrará al sobreescribir el objeto'
-  // clicks: 0, <-- se calcula 
-}
+/*
+    he inventado este ejercicio para practicar lo aprendido en este módulo del curso
+*/
+import React from 'react'
+import { useState } from 'react'
+import ReactDOM from 'react-dom/client'
 
 const App = () => {
-    // lo normal es tener varios estados
-  // const [left, setLeft] = useState(0)
-  // const [right, setRight] = useState(0)
-    // para comprender como funciona, se junta en un solo estado
-  const [counters, setCounters] = useState(INITIAL_STATE)
 
-  // con array
-  const [clicks, setClicks] = useState([])
+    const foodAndKcal = [
+        ['Manzana', 52],
+        ['Pera', 55],
+        ['Plátano', 88],
+        ['Fresas', 32],
+        ['Pechuga de pollo', 75],
+        ['Ternera', 94],
+        ['Filete de vacuno', 115],
+        ['Pasta de espelta cocida',	128],
+        ['Tortita de wrap integral', 170],
+        ['Cerveza', 43],
+        ['Kebab', 215],
+        ['Cheeseburger', 250],
+        ['Patatas fritas', 539],
+    ]
 
-  // se guardan todas las propiedades del objeto, y solo se modifican left, y clicks
-  // sin ...counters, las propiedades right y mensaje del objeto, perderían su valor
-  // spread = esparcir, quiero que todas las propiedades se esparzan en este objeto
-  const handleClickLeft = () => {
-    const newCountersState = {
-      ...counters,
-      left: counters.left +1, 
-      // clicks: counters.clicks +1 <-- se calcula
-    };
-    setCounters(newCountersState);
-    setClicks(prevClicks => {
-      return [...prevClicks, 'L']
-    })
-  }
-      // las props y los estados son inmutables
-        // nunca hacer counters.left++, nunca mutar el objeto del estado, porque puede tener resultados imprevistos
-        // siempre modificar la propiedad del objeto
+    const [selected, setSelected] = useState([])
 
-  const handleClickRight = () => {
-    setCounters({
-      ...counters,
-      right: counters.right +1,
-      // clicks: counters.clicks +1 <-- se calcula
-    });
-    setClicks(prevClicks => {
-      return [...prevClicks, 'R']
-    })
-  }
+    const addAndCount = (food) => {
+        const newSelected = selected.concat([food])
+        setSelected(newSelected)
+        setKcal(kcal + food[1])
+    }
 
-  const WarningNotUsed = () => {
-    return <h3>El contador no se ha usado todavía</h3>
-  }
+    const [kcal, setKcal] = useState(0)
 
-  const ListOfClicks = () => {
-    return <p>{clicks.join(", ")}</p>
-  }
+    const Buttons = () => {
+        return (
+            <div>
+                {foodAndKcal.map((food, index) => (
+                    <button 
+                        key={index}
+                        style={{ display: 'block', margin: '5px 20px' }}
+                        onClick={() => addAndCount(food)}
+                    >
+                        {food[0]}
+                    </button>
+                ))}
+            </div>
+        )
+    }
 
-  const handleReset = () => {
-    setCounters(INITIAL_STATE);
-    setClicks([])
-  }
+    const Table = () => {
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th style={{border: '1px solid black'}}>Alimento</th>
+                        <th style={{border: '1px solid black'}}>Kcal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {selected.map((food, index) => (
+                    <tr key={index}>
+                        <td style={{border: '1px solid black'}}>{food[0]}</td>
+                        <td style={{border: '1px solid black'}}>{food[1]}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        )
+    }
 
-  return (
-    <div>
-      {counters.left}
-      <button onClick={handleClickLeft}>left</button>
-      <button onClick={handleClickRight}>right</button>
-      {counters.right}
-      <button onClick={handleReset}>Reset</button>
-      <p>Número total de clicks: {clicks.length}</p>
-      <p>{counters.mensaje}</p>
-      {clicks.length === 0 ? <WarningNotUsed /> : <ListOfClicks />}
-    </div>
-  )
+    return (
+            <>
+                <h1>Contador de calorías</h1>
+                <h2>Selecciona tu ingesta de alimentos</h2>
+                <Buttons />
+                {kcal > 0 ? <h2>Has ingerido {kcal} calorías</h2> : <h2>Haz click sobre un alimento para comenzar a contar calorías</h2>}
+                {kcal > 0 ? <h3>Tabla de alimentos y calorías</h3> : <></>}
+                {kcal > 0 ? <Table />  : <></>}
+            </>
+    )
 }
 
-const rootElement = document.getElementById("root")
-ReactDom.render(<App/>, rootElement);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />)
